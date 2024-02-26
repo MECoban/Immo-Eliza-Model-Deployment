@@ -52,7 +52,7 @@ immo-eliza-model-deployment doing this and getting this.
 ## Visualization
 
 ## Contributors
-* [Jeaan Duffy](https://github.com/jduffy93)
+* [Jean Duffy](https://github.com/jduffy93)
 * [Lea](https://github.com/paatchwoork)
 * [Mimoun](https://github.com/1Dh2Be)
 * [Mahak Behl](https://github.com/MahakBehl)
