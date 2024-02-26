@@ -1,58 +1,45 @@
 import joblib
 import pandas as pd
+import json
+from io import StringIO
 
-class Predictor:
+def predict (num, fl, cat, inpt):
 
+    data = pd.DataFrame.from_dict(json.loads(inpt))
 
-    def __init__(self, num_predict, fl_predict, cat_predict, data, prediction):
+    model_name = 'LinearRegression'
+    artifacts = joblib.load(f"../models/{model_name}.joblib")
 
-        self.num_predict = num_predict
-        self.fl_predict = fl_predict
-        self.cat_predict = cat_predict
+    # Unpack the artifacts
+    num_features = artifacts["features"]["num_features"]
+    fl_features = artifacts["features"]["fl_features"]
+    cat_features = artifacts["features"]["cat_features"]
+    imputer = artifacts["imputer"]
+    enc = artifacts["enc"]
+    model = artifacts["model"]
 
-        self.data = pd.DataFrame()
-        self.prediction = pd.DataFrame()
+    # Extract the used data
+    #data = data[num + fl + cat]
+    #data = data.round({'latitude': 4, 'longitude': 4})
 
+    # Make predictions
+    prediction = model.predict(data)
 
-    def take (self, path):
+    return prediction.to_json()
 
-        self.data = pd.read_json(path)
-
-
-    def give (self, prediciton):
-
-        return prediction.to_json()
-
-
-    def predict (self, data, prediction):
-
-        model_name = 'LinearRegression'
-    
-        artifacts = joblib.load(f"../models/{model_name}.joblib")
-    
-        # Unpack the artifacts
-        num_features = artifacts["features"]["num_features"]
-        fl_features = artifacts["features"]["fl_features"]
-        cat_features = artifacts["features"]["cat_features"]
-        imputer = artifacts["imputer"]
-        enc = artifacts["enc"]
-        model = artifacts["model"]
-    
-        # Extract the used data
-        data = data[num_features + fl_features + cat_features]
-    
-    
-        # Make predictions
-        prediction = model.predict(data[num_predict + fl_predict + cat_predict])
 
 if __name__ == "__main__":
     num = ["nbr_bedrooms", "total_area_sqm"]
     fl = []
     cat = []
-    json = {"nbr_bedrooms":"5",
-            "total_area_sqm":"100.0"}
+    inpt = '{"nbr_bedrooms":[5], "total_area_sqm":[100.0]}'
 
-    pre = Predictor(num, fl, cat)
-    pre.take(json)
-    pre.predict()
-    print(pre.give())
+    #inpt = StringIO('{"nbr_bedrooms":"5", "total_area_sqm":"100.0"}')
+    #data = json.loads(inpt)
+    #data=pd.DataFrame.from_dict(data)
+    #print(data)
+    #print(type(data))
+
+    prediction = predict(num, fl, cat, inpt)
+    print(type(prediction))
+    print(prediction)
