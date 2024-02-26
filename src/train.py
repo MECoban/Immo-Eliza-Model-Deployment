@@ -1,5 +1,7 @@
 import joblib
 import pandas as pd
+import numpy as np
+from scipy.stats import zscore
 
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LinearRegression
@@ -49,6 +51,21 @@ def train():
     #        'heating_type',
     #        ]
 
+    # Round the lat and long to 4 decimal points (increases R2)
+    #data = data.round({'latitude': 4, 'longitude': 4})
+
+    # Remove outliers for numerical data
+    for column in data.select_dtypes(include=["float64"]).columns: # Loop through every numerical column
+        z_house = np.abs(zscore(data.loc[data["property_type"] == "HOUSE", column])) # Find zscore for houses
+        z_apartment = np.abs(zscore(data.loc[data["property_type"] == "APARTMENT", column])) # Find zscore for apartments
+
+        # Identify outliers with a z-score greater than 3
+        threshold = 3
+        z = pd.concat([z_house, z_apartment]).sort_index()
+        outliers = data[z > threshold]
+
+        data = data.drop(outliers.index) # Drop outliers by their index
+
     # Split the data into features and target
     X = data[num_features + fl_features + cat_features]
     y = data["price"]
@@ -60,7 +77,7 @@ def train():
     # Split the data into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.20, random_state=505)
-    
+    '''
     # Removing the outliers with the IQR method
     mult = 2   # remove a lot of stuff because the r2 will be bigger and we like that
     for X in [X_train, X_test]:
@@ -77,7 +94,7 @@ def train():
         IQR = Q3 - Q1
         outliers = (y < (Q1-mult*IQR)) | (y > (Q3+mult*IQR))
         y = y[~outliers]
-
+    '''
     # Impute missing values using SimpleImputer
     imputer = SimpleImputer(strategy="median")
     imputer.fit(X_train[num_features])
