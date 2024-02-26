@@ -8,7 +8,7 @@ def predict (num, fl, cat, inpt):
     data = pd.DataFrame.from_dict(json.loads(inpt))
 
     model_name = 'LinearRegression'
-    artifacts = joblib.load(f"../models/{model_name}.joblib")
+    artifacts = joblib.load(f"./models/{model_name}.joblib")
 
     # Unpack the artifacts
     num_features = artifacts["features"]["num_features"]
@@ -23,7 +23,7 @@ def predict (num, fl, cat, inpt):
     #data = data.round({'latitude': 4, 'longitude': 4})
 
     # Make predictions
-    prediction = model.predict(data)
+    prediction = pd.DataFrame(model.predict(data))
 
     return prediction.to_json()
 
