@@ -15,7 +15,7 @@ from yellowbrick.regressor import ResidualsPlot
 def train():
     """Trains a linear regression model on the full dataset and stores output."""
     # Load the data
-    data = pd.read_csv("../data/properties.csv")
+    data = pd.read_csv("./data/properties.csv")
 
     # Define features to use
     num_features = ['nbr_bedrooms', 
@@ -31,7 +31,7 @@ def train():
             ]
     #'equiped_kitchen'
 
-    #fl_features =['fl_swimming_pool', 
+    fl_features =[]#'fl_swimming_pool', 
     #        'fl_furnished', 
     #        'fl_open_fire', 
     #        'fl_terrace', 
@@ -41,7 +41,7 @@ def train():
     #        'fl_double_glazing'
     #        ]
 
-    #cat_features = ['region', 
+    cat_features = []#'region', 
     #        'property_type', 
     #        'subproperty_type', 
     #        'province', 
@@ -72,7 +72,7 @@ def train():
 
     # Standardize the numerical values
     scaler = StandardScaler()
-    scaler.fit_tranform(X)
+    scaler.fit_transform(X)
 
     # Split the data into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(
@@ -137,12 +137,12 @@ def train():
     print(f"Train R² score: {train_score}")
     print(f"Test R² score: {test_score}")
 
-    # Residual plot evaluation
-    visualizer = ResidualsPlot(model,train_alpha=0.5, test_alpha=0.5) # Initialize the residual plot visualizer
-    visualizer.fit(X_train, y_train)  # Fit the training data to the visualizer
-    visualizer.score(X_test, y_test)  # Evaluate the model on the test data
+    ## Residual plot evaluation
+    #visualizer = ResidualsPlot(model,train_alpha=0.5, test_alpha=0.5) # Initialize the residual plot visualizer
+    #visualizer.fit(X_train, y_train)  # Fit the training data to the visualizer
+    #visualizer.score(X_test, y_test)  # Evaluate the model on the test data
     model_name = f'{model=}'.split('=')[1]
-    visualizer.show(outpath=f"./eval/residual_plot/{model_name[:-2]}.png")                 # Finalize and render the figure
+    #visualizer.show(outpath=f"./eval/residual_plot/{model_name[:-2]}.png")                 # Finalize and render the figure
 
     # Retrain the model on the full dataset before saving it 
     print('Retraining the model on the full dataset...')
@@ -156,11 +156,11 @@ def train():
             "cat_features": cat_features,
         },
         "imputer": imputer,
-        "enc": enc,
+        "enc": '',#enc,
         "model": model,
     }
 
-    joblib.dump(artifacts, f"../models/{model_name[:-2]}.joblib")
+    joblib.dump(artifacts, f"./models/{model_name[:-2]}.joblib")
 
 if __name__ == "__main__":
     train()
