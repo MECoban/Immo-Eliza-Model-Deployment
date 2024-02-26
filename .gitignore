@@ -163,3 +163,4 @@ cython_debug/
 .deplo/
 ./src/preproc.py
 preproc.py
+eval/

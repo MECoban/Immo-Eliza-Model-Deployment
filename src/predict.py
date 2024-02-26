@@ -10,8 +10,8 @@ class Predictor:
         self.fl_predict = fl_predict
         self.cat_predict = cat_predict
 
-        self.data = pd.DataFrames()
-        self.prediction = pd.DataFrames()
+        self.data = pd.DataFrame()
+        self.prediction = pd.DataFrame()
 
 
     def take (self, path):
@@ -28,7 +28,7 @@ class Predictor:
 
         model_name = 'LinearRegression'
     
-        artifacts = joblib.load(f"models/{model_name}.joblib")
+        artifacts = joblib.load(f"../models/{model_name}.joblib")
     
         # Unpack the artifacts
         num_features = artifacts["features"]["num_features"]
