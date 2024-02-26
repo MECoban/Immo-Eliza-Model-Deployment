@@ -44,3 +44,15 @@ class Predictor:
     
         # Make predictions
         prediction = model.predict(data[num_predict + fl_predict + cat_predict])
+
+if __name__ == "__main__":
+    num = ["nbr_bedrooms", "total_area_sqm"]
+    fl = []
+    cat = []
+    json = {"nbr_bedrooms":"5",
+            "total_area_sqm":"100.0"}
+
+    pre = Predictor(num, fl, cat)
+    pre.take(json)
+    pre.predict()
+    print(pre.give())
