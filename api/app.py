@@ -2,13 +2,13 @@ from fastapi import FastAPI
 #from typing import Optional
 from pydantic import BaseModel
 import os
-from predict import predict
+from api.predict import predict
 import json
 
 PORT = os.environ.get("PORT", 8000)
 app = FastAPI(port=PORT)
 
-prediction = "Missing_vale"
+prediction = "Missing_value"
 
 @app.get('/')
 def index():
