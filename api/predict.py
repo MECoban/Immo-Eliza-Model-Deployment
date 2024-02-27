@@ -25,22 +25,4 @@ def predict (num, fl, cat, inpt):
     # Make predictions
     prediction = pd.DataFrame(model.predict(data))
 
-    return prediction.to_json()
-
-
-"""
-if __name__ == "__main__":
-    num = ["nbr_bedrooms", "total_area_sqm"]
-    fl = []
-    cat = []
-    inpt = '{"nbr_bedrooms":[5], "total_area_sqm":[100.0]}'
-
-    #inpt = StringIO('{"nbr_bedrooms":"5", "total_area_sqm":"100.0"}')
-    #data = json.loads(inpt)
-    #data=pd.DataFrame.from_dict(data)
-    #print(data)
-    #print(type(data))
-
-    prediction = predict(num, fl, cat, inpt)
-    print(type(prediction))
-    print(prediction)"""
+    return prediction.to_numpy()[0][0]

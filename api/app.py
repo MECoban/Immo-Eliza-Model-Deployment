@@ -37,3 +37,5 @@ async def update_value(data: Data):
 @app.get("/process_data")
 def process_data():
     return prediction
+
+#uvicorn app:app --reload
