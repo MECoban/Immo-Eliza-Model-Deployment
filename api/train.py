@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import StandardScaler
 
-from yellowbrick.regressor import ResidualsPlot
+#from yellowbrick.regressor import ResidualsPlot
 
 def train():
     """Trains a linear regression model on the full dataset and stores output."""
