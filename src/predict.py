@@ -25,7 +25,7 @@ def predict (num, fl, cat, inpt):
     # Make predictions
     prediction = pd.DataFrame(model.predict(data))
 
-    return prediction.to_json()
+    return prediction.to_numpy()[0][0]
 
 
 if __name__ == "__main__":
