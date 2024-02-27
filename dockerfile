@@ -21,6 +21,6 @@ CMD ["uvicorn", "api.app:app","--host", "0.0.0.0", "--port", "8000", "--reload"]
 #CMD uvicorn api:app --host 0.0.0.0 --reload
 
 #docker build -t api-image .
-#docker run --name api-container -p 8000:8000 -v %cd%:/app api-image
-#docker run --name api-container --rm -p 8000:8000 -v $(pwd):/api api-image
 #docker run --name api-container -p 8000:8000 -v %cd%:/api api-image
+#docker run --name api-container --rm -p 8000:8000 -v $(pwd):/api api-image
+
