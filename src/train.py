@@ -10,6 +10,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import StandardScaler
 
+from xgboost import XGBRegressor
+
 from yellowbrick.regressor import ResidualsPlot
 
 def train():
@@ -21,11 +23,11 @@ def train():
     num_features = ['nbr_bedrooms', 
             'total_area_sqm', 
             #'latitude', 
-            #'surface_land_sqm', 
-            #'nbr_frontages', 
-            #'terrace_sqm', 
-            #'garden_sqm',
-            #'construction_year',
+            'surface_land_sqm', 
+            'nbr_frontages', 
+            'terrace_sqm', 
+            'garden_sqm',
+            'construction_year',
             #'primary_energy_consumption_sqm',
             #'cadastral_income'
             ]
@@ -127,7 +129,9 @@ def train():
     print("Training the model on the train dataset...")
 
     # Train the model
-    model = LinearRegression()
+    #model = LinearRegression()
+    model_name = 'XGBRegressor'
+    model = XGBRegressor()
     model.fit(X_train, y_train)
 
     # Evaluate the model
@@ -141,7 +145,7 @@ def train():
     #visualizer = ResidualsPlot(model,train_alpha=0.5, test_alpha=0.5) # Initialize the residual plot visualizer
     #visualizer.fit(X_train, y_train)  # Fit the training data to the visualizer
     #visualizer.score(X_test, y_test)  # Evaluate the model on the test data
-    model_name = f'{model=}'.split('=')[1]
+    #model_name = f'{model=}'.split('=')[1]
     #visualizer.show(outpath=f"./eval/residual_plot/{model_name[:-2]}.png")                 # Finalize and render the figure
 
     # Retrain the model on the full dataset before saving it 
@@ -157,10 +161,11 @@ def train():
         },
         "imputer": imputer,
         "enc": '',#enc,
+        "scaler": scaler,
         "model": model,
     }
 
-    joblib.dump(artifacts, f"./models/{model_name[:-2]}.joblib")
+    joblib.dump(artifacts, f"./models/{model_name}.joblib")
 
 if __name__ == "__main__":
     train()
