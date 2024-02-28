@@ -2,7 +2,9 @@ import joblib
 import pandas as pd
 import json
 from io import StringIO
+
 from sklearn.preprocessing import StandardScaler
+
 
 def predict (num, fl, cat, inpt):
 
@@ -10,6 +12,7 @@ def predict (num, fl, cat, inpt):
 
     model_name = 'XGBRegressor'
     artifacts = joblib.load(f"./models/{model_name}.joblib")
+
 
     # Unpack the artifacts
     num_features = artifacts["features"]["num_features"]
@@ -48,3 +51,4 @@ def predict (num, fl, cat, inpt):
 #    prediction = predict(num, fl, cat, inpt)
 #    print(type(prediction))
 #    print(prediction)
+

@@ -17,3 +17,5 @@ six==1.16.0
 threadpoolctl==3.3.0
 tzdata==2024.1
 yellowbrick==1.5
+fastapi==0.85.0
+uvicorn==0.18.3

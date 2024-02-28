@@ -10,9 +10,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import StandardScaler
 
+
 from xgboost import XGBRegressor
 
 from yellowbrick.regressor import ResidualsPlot
+
 
 def train():
     """Trains a linear regression model on the full dataset and stores output."""
@@ -28,6 +30,7 @@ def train():
             'terrace_sqm', 
             'garden_sqm',
             'construction_year',
+
             #'primary_energy_consumption_sqm',
             #'cadastral_income'
             ]
@@ -129,10 +132,12 @@ def train():
     print("Training the model on the train dataset...")
 
     # Train the model
+
     #model = LinearRegression()
     model_name = 'XGBRegressor'
     model = XGBRegressor(objective='reg:absoluteerror') #Less overfitting it seems !
     #model = XGBRegressor()
+    
     model.fit(X_train, y_train)
 
     # Evaluate the model
