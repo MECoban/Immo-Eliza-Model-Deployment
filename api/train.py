@@ -15,7 +15,7 @@ from sklearn.preprocessing import StandardScaler
 def train():
     """Trains a linear regression model on the full dataset and stores output."""
     # Load the data
-    data = pd.read_csv("./data/properties.csv")
+    data = pd.read_csv("data/properties.csv")
 
     # Define features to use
     num_features = ['nbr_bedrooms', 
@@ -160,7 +160,7 @@ def train():
         "model": model,
     }
 
-    joblib.dump(artifacts, f"./models/{model_name[:-2]}.joblib")
+    joblib.dump(artifacts, f"models/{model_name[:-2]}.joblib")
 
 if __name__ == "__main__":
     train()
