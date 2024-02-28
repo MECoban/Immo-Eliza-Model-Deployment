@@ -33,18 +33,18 @@ def predict (num, fl, cat, inpt):
     return prediction.to_numpy()[0][0]
 
 
-if __name__ == "__main__":
-    num = ["nbr_bedrooms", "total_area_sqm"]
-    fl = []
-    cat = []
-    inpt = '{"nbr_bedrooms":[5], "total_area_sqm":[100.0], "surface_land_sqm":[200], "nbr_frontages":[3], "terrace_sqm":[10], "garden_sqm":[50], "construction_year":[2002]}'
-
-    #inpt = StringIO('{"nbr_bedrooms":"5", "total_area_sqm":"100.0"}')
-    #data = json.loads(inpt)
-    #data=pd.DataFrame.from_dict(data)
-    #print(data)
-    #print(type(data))
-
-    prediction = predict(num, fl, cat, inpt)
-    print(type(prediction))
-    print(prediction)
+#if __name__ == "__main__":
+#    num = ["nbr_bedrooms", "total_area_sqm"]
+#    fl = []
+#    cat = []
+#    inpt = '{"nbr_bedrooms":[5], "total_area_sqm":[100.0], "surface_land_sqm":[200], "nbr_frontages":[3], "terrace_sqm":[10], "garden_sqm":[50], "construction_year":[2002]}'
+#
+#    #inpt = StringIO('{"nbr_bedrooms":"5", "total_area_sqm":"100.0"}')
+#    #data = json.loads(inpt)
+#    #data=pd.DataFrame.from_dict(data)
+#    #print(data)
+#    #print(type(data))
+#
+#    prediction = predict(num, fl, cat, inpt)
+#    print(type(prediction))
+#    print(prediction)
