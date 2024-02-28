@@ -2,11 +2,11 @@ from fastapi import FastAPI
 #from typing import Optional
 from pydantic import BaseModel
 import os
-from api.predict import predict
+from predict import predict
 import json
 
 PORT = os.environ.get("PORT", 8000)
-app = FastAPI(port=PORT)
+app = FastAPI("https://immo-eliza-api-zq5r.onrender.com")
 
 prediction = "Missing_value"
 
