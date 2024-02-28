@@ -131,7 +131,8 @@ def train():
     # Train the model
     #model = LinearRegression()
     model_name = 'XGBRegressor'
-    model = XGBRegressor()
+    model = XGBRegressor(objective='reg:absoluteerror') #Less overfitting it seems !
+    #model = XGBRegressor()
     model.fit(X_train, y_train)
 
     # Evaluate the model
