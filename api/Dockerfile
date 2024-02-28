@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 CMD ["uvicorn", "api.app:app","--host", "0.0.0.0", "--port", "8000", "--reload"]
 #CMD uvicorn api:app --host 0.0.0.0 --reload
 
-#docker build -t api-image -f api/dockerfile .
+#docker build -t api-image -f api/Dockerfile . 
 #docker run --name api-container -p 8000:8000 -v %cd%:/api api-image(windows)
 #docker run --name api-container --rm -p 8000:8000 -v $(pwd):/api api-image(mac-linux)
 

@@ -8,7 +8,7 @@ def predict (num, fl, cat, inpt):
     data = pd.DataFrame.from_dict(json.loads(inpt))
 
     model_name = 'LinearRegression'
-    artifacts = joblib.load(f"{model_name}.joblib")
+    artifacts = joblib.load(f"api/{model_name}.joblib")
 
     # Unpack the artifacts
     num_features = artifacts["features"]["num_features"]
