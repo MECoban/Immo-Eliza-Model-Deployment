@@ -5,9 +5,9 @@ import pandas as pd
 import json 
 import requests
 
-df = pd.read_csv("../data/properties.csv")
+#df = pd.read_csv("../data/properties.csv")
 
-property_type = df["property_type"].unique().tolist()
+#property_type = df["property_type"].unique().tolist()
 
 def main():
 
