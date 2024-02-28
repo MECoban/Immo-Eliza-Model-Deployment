@@ -6,7 +6,7 @@ from api.predict import predict
 import json
 
 PORT = os.environ.get("PORT", 8000)
-app = FastAPI("https://immo-eliza-api-zq5r.onrender.com")
+app = FastAPI()
 
 prediction = "Missing_value"
 
