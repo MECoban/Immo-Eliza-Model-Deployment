@@ -21,7 +21,7 @@ def main():
 
      st.header('Features  👀')
 
-     FASTAPI_URL = "https://immo-eliza-api-zq5r.onrender.com"
+     FASTAPI_URL =  st.secrets["api_url"]
 
      nbr_bedrooms = st.slider('Number of bedrooms', 0, 35, 1)
      total_area_sqm = st.slider('What\'s the living area in m²', 0, 500, 1)
