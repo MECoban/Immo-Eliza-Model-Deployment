@@ -22,7 +22,7 @@ def main():
 
     st.header('Features  👀')
 
-    FASTAPI_URL =  st.secrets["api_url"]
+    FASTAPI_URL =  "https://immo-eliza-api-zq5r.onrender.com"
     #FASTAPI_URL =  "http://localhost:8000"
 
     total_area_sqm = st.number_input("Living Area")
