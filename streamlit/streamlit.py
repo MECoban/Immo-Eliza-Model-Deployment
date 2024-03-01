@@ -84,8 +84,8 @@ def main():
      st.header('Property specifications')
 
      #FASTAPI_URL = "http://localhost:8000"
-     #FASTAPI_URL =  "https://immo-eliza-api-zq5r.onrender.com"
-     FASTAPI_URL = ["api_url"]
+     FASTAPI_URL =  "https://immo-eliza-api-zq5r.onrender.com"
+     #FASTAPI_URL = ["api_url"]
 
      property_type, blank3, blank4, blank5 = st.columns(4)
      with property_type:
