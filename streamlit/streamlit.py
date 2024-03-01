@@ -76,7 +76,7 @@ def main():
 
      st.markdown("""
      <div style="text-align:center">
-     <h1>Fivers ML-model 🏡</h1>
+     <h1>Fivers Price Predictor 🏡</h1>
      </div>
      """, unsafe_allow_html=True)
      st.text("")
@@ -89,7 +89,7 @@ def main():
 
      property_type, blank3, blank4, blank5 = st.columns(4)
      with property_type:
-          property_type = ui.tabs(options=property_type_values)
+          property_type = st.radio(label="Select Property Type", options=["Apartment", "House"], horizontal=True, index=None)
      with blank3:
           st.write("")
      with blank4:
@@ -97,7 +97,7 @@ def main():
      with blank5:
           st.write("")
 
-     if property_type == "HOUSE":
+     if property_type == "House":
           subproperty_type = st.selectbox("**Subproperty Type**", options=property_type_mapping["HOUSE"], index=None, placeholder="Select Subproperty...")
      else:
           subproperty_type = st.selectbox("**Subproperty Type**", options=property_type_mapping["APARTMENT"], index=None, placeholder="Select Subproperty...")
@@ -117,7 +117,7 @@ def main():
      with total_area_sqm:
           total_area_sqm = (st.text_input("**Living Area (m²)**"))
      with surface_land_sqm:
-          if property_type == "HOUSE":
+          if property_type == "House":
                surface_land_sqm = surface_land_sqm = st.text_input("Total Land Area (m²)")
           else:
                surface_land_sqm = total_area_sqm
@@ -151,7 +151,7 @@ def main():
      with state_building:
           state_building = st.selectbox("**Building State**", options=building_state_mapping.keys(), index=None, placeholder="Select Building State...")
      with construction_year:
-          construction_year =  st.text_input("**Construction Year**", placeholder="Ex. 1990")
+          construction_year =  st.text_input("**Construction Year**", placeholder="Ex. 1990" , max_chars=4)
      with primary_energy_consumption_sqm:
           primary_energy_consumption_sqm = st.text_input("**Energy Consumption (kWh).**")
 
@@ -199,11 +199,11 @@ def main():
                     "property_type" : property_type,
                     "province" : province,
                     "subproperty_type" : subproperty_type,
-                    "state_building" : state_building,
+                    "state_building" : building_state_mapping[state_building] if state_building != None else None,
                     "zip_code" : zip_code,
                     "locality" : locality,
-                    "equipped_kitchen" : equipped_kitchen}
-        #payload = {"nbr_bedrooms": nbr_bedrooms , "total_area_sqm" : total_area_sqm   , "surface_land_sqm" : surface_land_sqm}
+                    "equipped_kitchen" : mapping_simplified[equipped_kitchen] if equipped_kitchen != None else None,}
+        print(payload)
         response = requests.post(f"{FASTAPI_URL}/update_value", json=payload)
         if response.status_code == 200:
             #st.success("Value sent successfully!")
