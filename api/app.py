@@ -6,6 +6,7 @@ from api.predict import predict
 
 
 PORT = os.environ.get("PORT", 8000)
+#app = FastAPI(port=PORT)
 app = FastAPI()
 
 prediction = "Missing_value"
@@ -35,7 +36,7 @@ class Data(BaseModel):
     subproperty_type : str
     state_building : str
     zip_code : str
-    region : str
+    locality : str
     equipped_kitchen : str
 
 
@@ -62,7 +63,7 @@ async def update_value(data: Data):
                     "subproperty_type": [data.subproperty_type],
                     "state_building": [data.state_building],
                     "zip_code": [data.zip_code],
-                    "region": [data.region],
+                    "locality": [data.locality],
                     "equipped_kitchen": [data.equipped_kitchen]}
     
     prediction = predict(prediction_dict)
@@ -73,5 +74,4 @@ async def update_value(data: Data):
 def process_data():
     return prediction
 
-
-#uvicorn api.app:app --reload
+#uvicorn app:app --reload

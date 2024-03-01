@@ -33,7 +33,7 @@ def predict (inpt):
     subproperty_type
     state_building
     zip_code
-    region
+    locality
     equipped_kitchen
     '''
 

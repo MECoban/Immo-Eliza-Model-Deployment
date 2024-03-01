@@ -50,8 +50,8 @@ def train():
                     "subproperty_type", 
                     "state_building",
                     "zip_code",
-                    #"locality", #
-                    "region",
+                    "locality", #
+                    #"region",
                     'equipped_kitchen',
                     #"epc",
                     #"heating_type",
@@ -128,22 +128,24 @@ def train():
     # Train the model
 
     #model = LinearRegression()
-    #parameters = {'nthread':[4], #when use hyperthread, xgboost may become slower
-    #          'objective':['reg:linear'],
-    #          'learning_rate': [.03, 0.05, .07], #so called `eta` value
-    #          'max_depth': [5, 6, 7],
+     #parameters = {'nthread':[4], #when use hyperthread, xgboost may become slower
+    #          'objective':['reg:absoluteerror'],
+    #          'learning_rate': [.05],#, .3, .7, 1], #so called `eta` value
+    #          'max_depth': [6],#[5, 6, 7],
     #          'min_child_weight': [4],
-    #          'silent': [1],
     #          'subsample': [0.7],
     #          'colsample_bytree': [0.7],
-    #          'n_estimators': [500]}
+    #          'n_estimators': [1000]}
 
     model_name = 'XGBRegressor'
-    model = XGBRegressor(objective='reg:absoluteerror') #Less overfitting it seems !
-    #model_grid = GridSearchCV(model, parameters, cv = 2, n_jobs = 5, verbose=True)
-    #model = XGBRegressor()
-    
+    model = XGBRegressor(objective='reg:absoluteerror', learning_rate=.05, max_depth=6, min_child_weight=4, n_estimators=1000)
     model.fit(X_train, y_train)
+    #model_grid = GridSearchCV(model, parameters, n_jobs = 5, verbose=True, scoring = 'r2', refit=True)
+    #y_predict_train = model``.predict(X_train)
+    #y_predict_test = xgb_grid.best_estimator_.predict(X_test)
+
+    #model_grid.fit(X_train, y_train)
+    #model = model_grid.best_estimator_
 
     # Evaluate the model
     # R2 evaluation
@@ -188,7 +190,7 @@ def train():
         "model": model,
     }
 
-    joblib.dump(artifacts,f"api/{model_name}.joblib")
+    joblib.dump(artifacts, f"api/{model_name}.joblib")
 
 if __name__ == "__main__":
     train()

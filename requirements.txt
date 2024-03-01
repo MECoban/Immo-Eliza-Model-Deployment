@@ -21,3 +21,5 @@ fastapi==0.85.0
 uvicorn==0.18.3
 xgboost==2.0.3
 seaborn==0.13.2
+streamlit==1.31.1
+streamlit-shadcn-ui==0.1.18
