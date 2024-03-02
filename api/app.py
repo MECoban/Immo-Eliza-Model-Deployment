@@ -17,7 +17,7 @@ def index():
 
 
 class Data(BaseModel):
-    total_area_sqm : int
+    total_area_sqm : float
     nbr_bedrooms: int
     primary_energy_consumption_sqm : int
     terrace_sqm : int
@@ -44,7 +44,7 @@ class Data(BaseModel):
 @app.post("/update_value/")
 async def update_value(data: Data):
     global prediction
-    prediction_dict = {"total_area_sqm":[data.total_area_sqm],
+    prediction_dict = {"total_area_sqm":[float(data.total_area_sqm)],
                     "nbr_bedrooms": [data.nbr_bedrooms],
                     "primary_energy_consumption_sqm":[data.primary_energy_consumption_sqm],
                     "terrace_sqm": [data.terrace_sqm],

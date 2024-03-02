@@ -48,7 +48,7 @@ def predict (inpt):
     cat_features = artifacts["features"]["cat_features"]
     imputer = artifacts["imputer"]
     enc = artifacts["enc"]
-    scaler = artifacts["scaler"]
+    #scaler = artifacts["scaler"]
     model = artifacts["model"]
 
 
@@ -59,7 +59,7 @@ def predict (inpt):
     data[num_features] = imputer.transform(data[num_features])
 
     # Rescale the data
-    data[num_features] = scaler.transform(data[num_features])
+    #data[num_features] = scaler.transform(data[num_features])
 
     #data = pd.concat([pd.DataFrame(num_scaled, columns=num_features), 
     data = pd.concat([data[num_features], 

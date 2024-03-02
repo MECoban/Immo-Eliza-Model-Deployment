@@ -93,9 +93,9 @@ def train():
     X_test_cat = enc.transform(X_test[cat_features]).toarray()
 
     # Standardize the numerical values
-    scaler = StandardScaler()
-    scaler.fit_transform(X_train[num_features])
-    scaler.transform(X_test[num_features])
+    #scaler = StandardScaler()
+    #scaler.fit_transform(X_train[num_features])
+    #scaler.transform(X_test[num_features])
 
 
     # Convert categorical columns with one-hot encoding using OneHotEncoder
@@ -186,7 +186,7 @@ def train():
         "imputer": imputer,
         #"imputer_latlong": imputer_latlong,
         "enc": enc,
-        "scaler": scaler,
+        #"scaler": scaler,
         "model": model,
     }
 
