@@ -153,7 +153,7 @@ def main():
      with construction_year:
           construction_year =  st.text_input("**Construction Year**", placeholder="Ex. 1990" , max_chars=4)
      with primary_energy_consumption_sqm:
-          primary_energy_consumption_sqm = st.text_input("**Energy Consumption (kWh).**")
+          primary_energy_consumption_sqm = st.text_input("**Energy Consumption (kWh/m²)**")
 
      st.divider()
 
