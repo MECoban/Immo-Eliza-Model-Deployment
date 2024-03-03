@@ -89,7 +89,7 @@ def main():
 
      property_type, blank3, blank4, blank5 = st.columns(4)
      with property_type:
-          property_type = st.radio(label="Select Property Type", options=["Apartment", "House"], horizontal=True, index=None)
+          property_type = st.radio(label="**Select Property Type**", options=["Apartment", "House"], horizontal=True, index=None)
      with blank3:
           st.write("")
      with blank4:
