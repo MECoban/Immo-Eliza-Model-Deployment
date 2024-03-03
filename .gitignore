@@ -164,3 +164,9 @@ cython_debug/
 ./src/preproc.py
 preproc.py
 eval/
+
+
+#before push to main
+__pycache__
+.vscode
+

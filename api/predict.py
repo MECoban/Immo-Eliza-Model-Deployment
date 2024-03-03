@@ -6,8 +6,8 @@ from io import StringIO
 from sklearn.preprocessing import StandardScaler
 
 
-def predict (inpt):
-    '''
+def predict(inpt):
+    """
     NUMERICAL FEATURES
     total_area_sqm
     nbr_bedrooms
@@ -35,11 +35,11 @@ def predict (inpt):
     zip_code
     locality
     equipped_kitchen
-    '''
+    """
 
     data = pd.DataFrame.from_dict(inpt)
 
-    model_name = 'XGBRegressor'
+    model_name = "XGBRegressor"
     artifacts = joblib.load(f"api/{model_name}.joblib")
 
     # Unpack the artifacts
@@ -48,24 +48,27 @@ def predict (inpt):
     cat_features = artifacts["features"]["cat_features"]
     imputer = artifacts["imputer"]
     enc = artifacts["enc"]
-    #scaler = artifacts["scaler"]
+    # scaler = artifacts["scaler"]
     model = artifacts["model"]
 
-
-    # One Hot encoding 
+    # One Hot encoding
     cat_enc = enc.transform(data[cat_features]).toarray()
 
     # Impute the values
     data[num_features] = imputer.transform(data[num_features])
 
     # Rescale the data
-    #data[num_features] = scaler.transform(data[num_features])
+    # data[num_features] = scaler.transform(data[num_features])
 
-    #data = pd.concat([pd.DataFrame(num_scaled, columns=num_features), 
-    data = pd.concat([data[num_features], 
-            data[fl_features], 
-            pd.DataFrame(cat_enc, columns= enc.get_feature_names_out())], 
-    axis=1)
+    # data = pd.concat([pd.DataFrame(num_scaled, columns=num_features),
+    data = pd.concat(
+        [
+            data[num_features],
+            data[fl_features],
+            pd.DataFrame(cat_enc, columns=enc.get_feature_names_out()),
+        ],
+        axis=1,
+    )
 
     # Make predictions
     prediction_df = pd.DataFrame(model.predict(data))
