@@ -51,6 +51,8 @@ immo-eliza-model-deployment doing this and getting this.
 
 ## Visualization
 
+Created a web application using Streamlit.
+
 ## Contributors
 * [Jean Duffy](https://github.com/jduffy93)
 * [Lea](https://github.com/paatchwoork)
